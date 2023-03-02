@@ -1,0 +1,22 @@
+#places {
+
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    border: 1px solid black;
+
+}
+
+table{
+
+    border: 1px solid black;
+    height: 100%;
+
+}
+
+.Sales{
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
