@@ -1,3 +1,12 @@
+body {
+
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    
+    
+    }
+
+
 #places {
 
     display: flex;
@@ -7,10 +16,10 @@
 
 }
 
-table{
+.CookieData {
 
     border: 1px solid black;
-    height: 100%;
+    
 
 }
 
@@ -18,5 +27,6 @@ table{
 
     display: flex;
     justify-content: space-evenly;
+    
 
 }
