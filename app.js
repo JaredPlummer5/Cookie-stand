@@ -95,11 +95,12 @@
 // }
 
 // Define the CookieStore constructor function
-function CookieStore(name, minimum, maximum, avgSales) {
-    this.name = name;
+function CookieStore(location, minimum, maximum, avgSales) {
+    this.location = location;
     this.minimum = minimum;
     this.maximum = maximum;
     this.avgSales = avgSales;
+    
     this.array = [];
 }
 
@@ -122,26 +123,39 @@ CookieStore.prototype.generateSalesData = function () {
 
 CookieStore.prototype.printToPage = function () {
     const hoursOpen = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm:', '1pm:', '2pm:', '3pm:', '4pm:', '5pm:', '6pm:', '7pm:'];
-    let TableHours = document.querySelectorAll(".CookieDataTime")
-    for (let i = 0; i < TableHours.length; i++) {
-        let CookiesAmts = document.createElement('tr');
-        CookiesAmts.innerHTML += 
+    let TableHours = document.querySelector(".CookieData");
+    let CookiesAmts = document.createElement('tr');
+    
+    let Location1 = document.createElement("td");
+    
+    Location1.innerHTML = this.location
+    CookiesAmts.append(Location1);
+    
+    for (let i = 0; i < hoursOpen.length; i++) {
+        
+        let CookieDataForLocation = document.createElement("td");
+        CookieDataForLocation.innerHTML += this.array[i];
+        CookiesAmts.append(CookieDataForLocation);
         
     }
-
+    
     let sum = 0;
     for (let j = 0; j < this.array.length; j++) {
         sum += this.array[j];
     }
-    
-    let tableOfTimes = document.querySelectorAll(".CookieDataTime");
+    let TotalRow = document.createElement("td")
+    TotalRow.innerHTML = sum
+    CookiesAmts.append(TotalRow);
+    TableHours.append(CookiesAmts);
+
+    let tableOfTimes = document.querySelector(".CookieData");
     for(let i = 0; i < tableOfTimes.length; i++) {
-        let sumli = document.createElement('tr');
         sumli.innerHTML = sum;
+        let sumli = document.createElement('tr');
         ListOfTotals.appendChild(sumli);
 
     };
-
+}
     // Create instances of CookieStore
     const seattle = new CookieStore('Seattle', 23, 65, 6.3);
     const tokyo = new CookieStore('Tokyo', 3, 24, 1.2);
@@ -150,25 +164,8 @@ CookieStore.prototype.printToPage = function () {
     const lima = new CookieStore('Lima', 2, 16, 4.6);
 
     // Generate sales data and print to the page for each store
-    seattle.generateSalesData();
-    seattle.printToPage();
+   
 
-    tokyo.generateSalesData();
-    tokyo.printToPage();
-
-    dubai.generateSalesData();
-    dubai.printToPage();
-
-    paris.generateSalesData();
-    paris.printToPage();
-
-    lima.generateSalesData();
-    lima.printToPage();
-
-    // Generate sales data and print to the page for each store
-    generateSalesData();
-    printToPage();
-}
 // tokyo.generateSalesData();
 // tokyo.printToPage();
 
