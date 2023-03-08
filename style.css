@@ -1,17 +1,18 @@
-
 body {
-    background: linear-gradient(rgba(248,231,217), rgba(249,87,0));
-    background-size: 100vw 100vh; /* set background size to 100% viewport width and 100% viewport height */
+
+    background: radial-gradient(circle at 10% 20%, rgb(253, 239, 132) 0%, rgb(247, 198, 169) 54.2%, rgb(21, 186, 196) 100.3%);
+
+
 }
+
 
 /* rest of the CSS */
 
-  h1 {
+h1 {
     color: #F95700;
- }
+}
 
 #places {
-
     display: flex;
     justify-content: space-evenly;
     width: 100%;
@@ -22,36 +23,37 @@ body {
 .CookieData {
 
     border: 1px solid black;
-    
+
 
 }
 
-.Sales{
+.Sales {
 
     display: flex;
     justify-content: space-evenly;
-    
+
 
 }
 
 
-table{
+table {
     width: 1100px;
     height: 500px;
 }
 
 
-.CookieDataTime{
+.CookieDataTime {
 
     border: 1px solid black;
-    
+
 
 }
+
 td {
     border: 1px solid black;
 
 }
-  
+
 
 
 
@@ -60,8 +62,9 @@ td {
 
 /* Presenting Page */
 p * {
-   float: left;
+    float: left;
 }
+
 .cookie-icon {
     position: relative;
     width: 100px;
@@ -71,95 +74,162 @@ p * {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .fish{
-    position: absolute;
-   
+}
 
-  }
-  .salmon {
+.cookie-icon:hover {
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(1080deg);
+    }
+}
+
+.fish {
+    position: absolute;
+
+
+}
+
+.salmon {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 100px;
     width: 200px;
-  }
- 
+}
 
-  
-  .cookie-icon {
+
+
+.cookie-icon {
     width: 300px;
     height: 300px;
     border-radius: 50%;
     background-color: #f5deb3;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     float: left;
-  }
-  
-  .cookie {
+}
+
+.cookie {
     position: relative;
     width: 250px;
     height: 250px;
     border-radius: 50%;
     background-color: #b36a2f;
-  }
-  
-  .chocolate-chip {
+}
+
+.chocolate-chip {
     position: absolute;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: #421b00;
-  }
-  
-  .chocolate-chip:nth-child(1) {
+}
+
+.chocolate-chip:nth-child(1) {
     top: 20%;
     left: 20%;
-  }
-  
-  .chocolate-chip:nth-child(2) {
+}
+
+.chocolate-chip:nth-child(2) {
     top: 35%;
     left: 60%;
-  }
-  
-  .chocolate-chip:nth-child(3) {
+}
+
+.chocolate-chip:nth-child(3) {
     top: 50%;
     left: 30%;
-  }
-  
-  .chocolate-chip:nth-child(4) {
+}
+
+.chocolate-chip:nth-child(4) {
     top: 70%;
     left: 80%;
-  }
-  
-  .chocolate-chip:nth-child(5) {
+}
+
+.chocolate-chip:nth-child(5) {
     top: 80%;
     left: 20%;
-  }
-  
-  .chocolate-chip:nth-child(6) {
+}
+
+.chocolate-chip:nth-child(6) {
     top: 20%;
     left: 70%;
-  }
-  
-  .chocolate-chip:nth-child(7) {
+}
+
+.chocolate-chip:nth-child(7) {
     top: 60%;
     left: 40%;
-  }
-  
-  .chocolate-chip:nth-child(8) {
+}
+
+.chocolate-chip:nth-child(8) {
     top: 40%;
     left: 20%;
-  }
-  
-  .chocolate-chip:nth-child(9) {
+}
+
+.chocolate-chip:nth-child(9) {
     top: 30%;
     left: 50%;
-  }
-  
-  .chocolate-chip:nth-child(10) {
+}
+
+.chocolate-chip:nth-child(10) {
     top: 80%;
     left: 60%;
-  }
-  
+}
+
+#index {
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 3;
+}
+
+
+
+
+#familypic {
+    height: 200px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+}
+
+#picsAndText {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+    
+}
+
+
+.HourLocation {
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.salmon2 {
+
+    border-radius: 40%;
+    width: 500px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.background {
+    margin: 30px;
+    background-color: orange;
+    border-radius: 10px;
+    box-shadow: black;
+}

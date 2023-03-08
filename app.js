@@ -33,14 +33,13 @@ CookieStore.prototype.printToPage = function () {
     let CookiesAmts = document.createElement('tr');
 
     let Location1 = document.createElement("td");
-
     Location1.innerHTML = this.location
     CookiesAmts.append(Location1);
 
     for (let i = 0; i < hoursOpen.length; i++) {
 
         let CookieDataForLocation = document.createElement("td");
-        CookieDataForLocation.innerHTML += this.array[i];
+        CookieDataForLocation.innerHTML = CookieDataForLocation.innerHTML + this.array[i];
         CookiesAmts.append(CookieDataForLocation);
 
     }
@@ -56,7 +55,7 @@ CookieStore.prototype.printToPage = function () {
     TableHours.append(CookiesAmts);
 
     let tableOfTimes = document.querySelector(".CookieData");
-    
+
     for (let i = 0; i < tableOfTimes.length; i++) {
         sum.innerHTML = sum;
         let sumTr = document.createElement('tr');
@@ -92,20 +91,22 @@ lima.printToPage();
 CookiePerHoursTotal = function () {
     let totalPerHourForStores = [];
     let totalHourlyLocat = document.createElement("tfoot");
-    let totalRow = document.createElement("tr"); 
-    
+    let totalRow = document.createElement("tr");
+
     let totalRowHeader = document.createElement("td");// creates a total header column
     totalRow.append(totalRowHeader);
     totalRowHeader.innerHTML = "Totals";
-    
+
     for (let i = 0; i < hoursOpen.length; i++) {
+
         let sum = seattle.array[i] + paris.array[i] + dubai.array[i] + tokyo.array[i] + lima.array[i];
         totalPerHourForStores.push(sum);
         let tFoot = document.createElement("td");
         tFoot.innerHTML = sum;
         totalRow.append(tFoot); // append td element to tr element
+
     }
-    
+
     let TableHours = document.querySelector(".CookieData");
     totalHourlyLocat.append(totalRow); // append tr element to tfoot element
     TableHours.append(totalHourlyLocat);
@@ -113,7 +114,7 @@ CookiePerHoursTotal = function () {
     let finalTotal = document.createElement('td');
     totalRow.append(finalTotal);
     let sumfinalTotal = 0;
-    for(let i = 0; i < totalPerHourForStores.length; i++){
+    for (let i = 0; i < totalPerHourForStores.length; i++) {
         sumfinalTotal += totalPerHourForStores[i];
     }
     finalTotal.innerHTML = sumfinalTotal;
