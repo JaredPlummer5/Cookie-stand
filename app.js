@@ -26,15 +26,45 @@ CookieStore.prototype.generateSalesData = function () {
 };
 
 
+const hoursOpen = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm:', '1pm:', '2pm:', '3pm:', '4pm:', '5pm:',   '6pm:', '7pm:'];
+let TableHours = document.querySelector(".CookieData");
+let CookiesAmts = document.createElement('tr');
 
-const hoursOpen = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm:', '1pm:', '2pm:', '3pm:', '4pm:', '5pm:', '6pm:', '7pm:'];
+
+//Extra th for the format to be correct
+let ExtraTh = document.createElement("th")
+CookiesAmts.append(ExtraTh);
+
+for (let i = 0; i < hoursOpen.length; i++) {
+
+    let TimeTh = document.createElement("th");
+    TimeTh.innerHTML = hoursOpen[i];
+    CookiesAmts.append(TimeTh);
+
+}
+
+TableHours.append(CookiesAmts);
+
+let dailyTotals = document.createElement("th");
+
+dailyTotals.innerHTML += "Daily Totals"
+
+CookiesAmts.append(dailyTotals);
+
+
+
+
+
 CookieStore.prototype.printToPage = function () {
+
     let TableHours = document.querySelector(".CookieData");
     let CookiesAmts = document.createElement('tr');
 
     let Location1 = document.createElement("td");
     Location1.innerHTML = this.location
     CookiesAmts.append(Location1);
+
+
 
     for (let i = 0; i < hoursOpen.length; i++) {
 
@@ -61,7 +91,7 @@ CookieStore.prototype.printToPage = function () {
         let sumTr = document.createElement('tr');
         ListOfTotals.appendChild(sumTr);
 
-    };
+    }
 
 
 
@@ -88,12 +118,13 @@ paris.printToPage();
 lima.generateSalesData();
 lima.printToPage();
 
+
 CookiePerHoursTotal = function () {
     let totalPerHourForStores = [];
     let totalHourlyLocat = document.createElement("tfoot");
     let totalRow = document.createElement("tr");
 
-    let totalRowHeader = document.createElement("td");// creates a total header column
+    let totalRowHeader = document.createElement("td");
     totalRow.append(totalRowHeader);
     totalRowHeader.innerHTML = "Totals";
 
