@@ -71,7 +71,7 @@ CookieStore.prototype.printToPage = function () {
   let CookiesAmts = document.createElement("tr");
   CookiesAmts.classList.add(this.location);
   let StoreLocation = document.createElement("td");
-  StoreLocation.classList.add("LocationCheck");
+  StoreLocation.className = "LocationCheck";
   StoreLocation.innerHTML = this.location;
   CookiesAmts.append(StoreLocation);
 
@@ -104,13 +104,13 @@ const lima = new CookieStore("Lima", 2, 16, 4.6);
 
 
 let stores = [seattle, tokyo, dubai, paris, lima];
+let totalPerHourForStores = [];
 CookiePerHoursTotal = function (stores) {
   //Define a function to calculate the hourly total sales for all stores and display it in the table footer.
-  let totalPerHourForStores = [];
   let totalHourlyLocat = document.createElement("tfoot");
   let totalRow = document.createElement("tr");
-
   let totalRowHeader = document.createElement("td");
+  totalRow.id = "Totals"
   totalRow.append(totalRowHeader);
   totalRowHeader.innerHTML = "Totals";
 
@@ -153,50 +153,56 @@ paris.printToPage();
 
 lima.generateSalesData();
 lima.printToPage();
-// Select the table element and the form element.
+
+CookiePerHoursTotal(stores);
+// Select the table element and the form element
 CookieStore.prototype.update = function () {
-  let updateData = document.getElementsByClassName("LocationCheck");
-  let updated = false;
-  for (let i = 0; i < updateData.length; i++) {
-    if (updateData[i].innerHTML === this.location) {
-      let oldTRintoNewTR = updateData[i].parentElement;
-      oldTRintoNewTR.innerHTML = "";
-      this.array = [];
-
-      this.generateSalesData();
-
-      let sameLocation = document.createElement("td");
-      sameLocation.innerHTML = this.location; // Set the innerHTML of sameLocation
-      oldTRintoNewTR.append(sameLocation); // Append the sameLocation to oldTRintoNewTR
-
-
-      for (let j = 0; j < hoursOpen.length; j++) {
-        let updateTd = document.createElement("td");
-        updateTd.innerHTML = this.array[j];
-        oldTRintoNewTR.append(updateTd);
-      }
-      let sum2 = this.array.reduce(function (a, b) {
-        console.log(a, b);
-        return a + b;
-      }, 0);
-
-      let UpdatedTotalTd = document.createElement("td");
-      UpdatedTotalTd.innerHTML = sum2;
-      oldTRintoNewTR.append(UpdatedTotalTd);
-      updated = true;
+    let updateData = document.getElementsByClassName("LocationCheck");
+    let updated = false;
+    console.log(this.location)
+    for (let i = 0; i < stores.length; i++) {
+        console.log(stores[i])
+        if (updateData[i].innerHTML === this.location) {
+            
+            console.log("this is the if statement");
+            let oldTRintoNewTR = updateData[i].parentElement;
+            oldTRintoNewTR.innerHTML = "";
+            this.array = [];
+            
+            this.generateSalesData();
+            
+            let sameLocation = document.createElement("td");
+            sameLocation.innerHTML = this.location; // Set the innerHTML of sameLocation
+            sameLocation.className = "LocationCheck";
+            oldTRintoNewTR.append(sameLocation); // Append the sameLocation to oldTRintoNewTR
+            
+            
+            for (let j = 0; j < hoursOpen.length; j++) {
+                let updateTd = document.createElement("td");
+                updateTd.innerHTML = this.array[j];
+                oldTRintoNewTR.append(updateTd);
+            }
+            let sum2 = this.array.reduce(function (a, b) {
+                //console.log(a, b);
+                return a + b;
+            }, 0);
+            
+            let UpdatedhoulyTotalTd = document.createElement('td');
+            UpdatedhoulyTotalTd.innerHTML = sum2;
+            oldTRintoNewTR.append(UpdatedhoulyTotalTd);
+            
+            updated = true;
+            
+            
+        }
     }
-  }
-  if (!updated) {
-    this.generateSalesData();
-    this.printToPage();
-  }
-
-  let table = document.querySelector(".CookieData");
-  let oldTotalsRow = table.querySelector("tfoot");
-  if (oldTotalsRow) {
-    table.removeChild(oldTotalsRow);
-  }
-  CookiePerHoursTotal(stores);
+    
+    
+    let table = document.querySelector(".CookieData");
+    let oldTotalsRow = table.querySelector("tfoot");
+    if (oldTotalsRow) {
+        table.removeChild(oldTotalsRow);
+    }
 };
 
 let table = document.querySelector(".CookieData");
@@ -207,35 +213,43 @@ let Submit = document.querySelector("form");
 //retrieves the values from the form inputs, and creates a new instance of the CookieStore object. 
 //It then updates the table with the new or updated store's data, and recalculates and displays the hourly totals.
 
+// ... (previous code)
+
 Submit.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  let location = document.getElementById("Location").value;
-  let minForStores = document.getElementById("Min").value;
-  let maxForStores = document.getElementById("Max").value;
-  let AvgForStores = document.getElementById("Avg").value;
-
-
-  let newStore = new CookieStore(
-    location,
-    minForStores,
-    maxForStores,
-    parseInt(AvgForStores)
-  );
-  stores.push(newStore);
-
-  newStore.update();
-
-  let table = document.querySelector(".CookieData");
-  let oldTotalsRow = table.querySelector("tfoot");
-  if (oldTotalsRow) {
-    table.removeChild(oldTotalsRow);
-  }
-
-  CookiePerHoursTotal(stores);
-});
-
-
+    e.preventDefault();
+    
+    let location = document.getElementById("Location").value;
+    let minForStores = parseInt(document.getElementById("Min").value, 10);
+    let maxForStores = parseInt(document.getElementById("Max").value, 10);
+    let AvgForStores = parseFloat(document.getElementById("Avg").value);
+  
+    let existingStore = stores.find(function(store){
+        return store.location === location
+    });
+  
+    if (existingStore) {
+      existingStore.minimum = minForStores;
+      existingStore.maximum = maxForStores;
+      existingStore.avgSales = AvgForStores;
+      existingStore.array = [];
+      existingStore.generateSalesData();
+      existingStore.update();
+    } else {
+      let newStore = new CookieStore(location, minForStores, maxForStores, AvgForStores);
+      newStore.generateSalesData();
+      newStore.printToPage();
+      stores.push(newStore);
+    }
+  
+    let table = document.querySelector(".CookieData");
+    let oldTotalsRow = table.querySelector("tfoot");
+    if (oldTotalsRow) {
+      table.removeChild(oldTotalsRow);
+    }
+  
+    CookiePerHoursTotal(stores);
+  });
+  
 
 
 

@@ -10,21 +10,26 @@
 </head>
 
 <body>
-
-    <table class="CookieData">
-    </table>
-    <form>
-        <fieldset>
-            <input id = "Location" placeholder="Location" type="text">
-            <input id = "Max" placeholder = "Maximum" type = "number"/>
-            <input id = "Min" placeholder = "Minimum" type = "number"/>
-            <input id = "Avg" placeholder = "Average" type = "text"/>
-            <button type = "submit">Submit</button>
-        </fieldset>
-    </form>
-
-    <a href="index.html">Link to Home Page
-    </a>
+    <nav id = "salesNav">
+        <a href="index.html">
+            Link to Home Page
+        </a>
+    </nav>
+    <div id="table">
+        <table class="CookieData">
+        </table>
+        <div iid = "FormDiv">
+            <form id="form">
+               
+                    <input id="Location" placeholder="Location" type="text">
+                    <input id="Max" placeholder="Maximum" type="number" />
+                    <input id="Min" placeholder="Minimum" type="number" />
+                    <input id="Avg" placeholder="Average" type="text" />
+                    <button type="submit">Submit</button>
+               
+            </form>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 
